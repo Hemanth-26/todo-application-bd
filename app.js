@@ -41,13 +41,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/get/ip', (req, res) => {
-    let forwarded = req.headers['x-forwarded-for']
-    // console.log('forwarded', forwarded);
-    let ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
-    // res.writeHead(200);
+    // let forwarded = req.headers['x-forwarded-for']
+    // let ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
+    // res.send(ip);
     
+    console.log(req.socket.remoteAddress);
+    console.log(req.ip);
 
-    res.send(ip);
+    res.end("Your IP Addresss is: " + req.socket.localAddress);
 });
 
 connect().then(() => {
