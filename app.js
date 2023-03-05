@@ -5,7 +5,6 @@ const path = require('path');
 const fs = require('fs');
 const cors = require('cors');
 const multer = require('multer');
-const IP = require('ip');
 require('dotenv').config();
 const app = express();
 const upload = multer();
@@ -42,14 +41,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/get/ip', (req, res) => {
-    // let forwarded = req.headers['x-forwarded-for']
+    let forwarded = req.headers['x-forwarded-for']
     // console.log('forwarded', forwarded);
-    // let ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
+    let ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
     // res.writeHead(200);
     
-    const ipAddress = IP.address();
-    console.log("Client IP Address: " + ipAddress);
-    res.send(ipAddress)
+
+    res.send(ip);
 });
 
 connect().then(() => {
