@@ -48,6 +48,7 @@ app.get('/get/ip', (req, res) => {
     // res.writeHead(200);
     
     const ipAddress = IP.address();
+    console.log("Client IP Address: " + ipAddress);
     res.send(ipAddress)
 });
 

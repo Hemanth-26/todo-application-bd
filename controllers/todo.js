@@ -23,7 +23,7 @@ let AddTodoList = async (req, res) => {
 let UpdateTodoListById = async (req, res) => {
     try {
         let updateTodoList = await Todo.findById(req.params.id);
-        console.log("updateTodoList", updateTodoList);
+        // console.log("updateTodoList", updateTodoList);
         if (updateTodoList != null) {
             updateTodoList.list = req.body.list;
             await updateTodoList.save();
