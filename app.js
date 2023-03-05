@@ -40,15 +40,11 @@ app.get('/', (req, res) => {
     res.send("Server Running Successfully");
 });
 
+app.enable('trust proxy')
 app.get('/get/ip', (req, res) => {
-    // let forwarded = req.headers['x-forwarded-for']
-    // let ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
-    // res.send(ip);
-    
-    console.log(req.socket.remoteAddress);
-    console.log(req.ip);
-
-    res.end("Your IP Addresss is: " + req.socket.localAddress);
+    let forwarded = req.headers['x-forwarded-for']
+    let ip = forwarded ? forwarded.split(/, /)[0] : req.socket.remoteAddress;
+    res.send(ip);
 });
 
 connect().then(() => {
